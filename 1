@@ -1,0 +1,28 @@
+А 
+
+#!/bin/bash
+cd /path/to/your/folder
+sed -i ' nginx-[01-100].bak' 's/nginx-01.com/nginx-02.com/g' *
+done
+
+B
+
+#!/bin/bash
+touch random_text_-{1..10}.txt
+done
+
+C
+#!/bin/bash
+echo -e "\n\n\n\n\n\n\n\n\n\\n\n"&& echo "##################CPU INFO ###################" && \
+lscpu | grep "^CPU(s):\|Core(s)\|Socket(s)\|Model name" && 
+echo "##################MEM INFO ###################" && \
+free -h -g -t | grep Mem: |awk -F" " '{print $1, $2}' && \
+echo "##################ALL INTERFACE INFO ###################" && \
+ifconfig -a | grep HWadd | grep -v "tap\|fw" | sort |awk -F" " '{print $1,$4,$5}' && echo "##################BONDING INFO ###################" && \
+for i in `ls /proc/net/bonding/*` ; do echo "################ $i ################" && cat $i | grep 'Slave Inter'; done && \
+echo "##################INTERFACE SPEED INFO###################" && \
+ints=(`ip l |awk -F :" " '{print $2}' |grep -Ev 'vmbr|bond|lo|tap|fw'`); for i in ${ints[@]}; do echo "#################" && \
+ethtool $i |grep -E -A 3 'Settings for|Supported link modes';done && \
+echo "##################IP ADRESSES###################" && /sbin/ifconfig | grep -B1 'inet addr' | cut -d: -f1,2 | awk -F" " '{print $1,$2}' && \
+echo "##################DISK INFO###################" && lsblk -o "NAME,MAJ:MIN,RM,SIZE,RO,FSTYPE,MOUNTPOINT,UUID"
+done
